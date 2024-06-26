@@ -1,5 +1,4 @@
 class Author:
-    all = []
 
     def __init__(self, name):
         if not isinstance(name, str):
@@ -12,9 +11,9 @@ class Author:
     def books(self):
         return [contract.book for contract in Contract.all if contract.author == self]
     
-    def sign_contract(self, book, date, royalties, title):
+    def sign_contract(self, book, date, royalties):
         new_contract = Contract(self, book, date, royalties)
-        new_book = Book(self, title)
+        return new_contract
     
     def total_royalties(self):
         roy_sum = 0
@@ -26,7 +25,6 @@ class Author:
 
 
 class Book:
-    all = []
 
     def __init__(self, title):
         if not isinstance(title, str):
@@ -67,7 +65,7 @@ class Contract:
 
     @property
     def book(self):
-        return self.book
+        return self._book
     
     @book.setter
     def book(self, book):
